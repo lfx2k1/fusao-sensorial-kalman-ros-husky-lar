@@ -1,0 +1,21 @@
+<launch>
+  <!-- Sobe o Husky no mundo do LaR já com ground truth (/gt/odom) e GPS (/fix) -->
+  <arg name="gui" default="true"/>
+
+  <env name="HUSKY_URDF_EXTRAS" value="$(find kalman_localization)/urdf/kalman_extras.urdf"/>
+  <env name="HUSKY_REALSENSE_ENABLED" value="false"/>
+  <env name="HUSKY_LMS1XX_ENABLED" value="false"/>
+  <env name="ENABLE_EKF" value="false"/>
+
+  <include file="$(find lar_gazebo)/launch/lar_husky.launch">
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+
+  <!-- Converte /fix (lat/lon) -> /gps/odom (nav_msgs/Odometry, x/y local) -->
+  <node pkg="kalman_localization" type="gps_to_odom.py" name="gps_to_odom" output="screen">
+    <param name="ref_latitude" value="0.0"/>
+    <param name="ref_longitude" value="0.0"/>
+    <param name="frame_id" value="odom"/>
+    <param name="child_frame_id" value="base_link"/>
+  </node>
+</launch>

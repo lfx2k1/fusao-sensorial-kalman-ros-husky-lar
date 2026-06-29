@@ -1,0 +1,6 @@
+# Copie este arquivo para a RAIZ do repo lar_gazebo, renomeie para
+# docker-compose.override.yml e ajuste o caminho absoluto abaixo.
+services:
+  lar_gazebo:
+    volumes:
+      - /caminho/absoluto/para/kalman_localization:/ws/src/kalman_localization:rw

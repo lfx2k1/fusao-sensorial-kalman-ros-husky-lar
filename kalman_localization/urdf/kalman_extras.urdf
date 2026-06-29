@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot>
+
+  <!-- Ground truth (P3D) -> /gt/odom, usado SOMENTE para avaliação -->
+  <gazebo>
+    <plugin name="p3d_ground_truth" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>30.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>gt/odom</topicName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <frameName>map</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+  </gazebo>
+
+  <!-- GPS simulado (hector_gazebo_plugins) -> /fix (sensor_msgs/NavSatFix) -->
+  <gazebo>
+    <plugin name="gps_plugin" filename="libhector_gazebo_ros_gps.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>5.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <frameId>base_link</frameId>
+      <topicName>fix</topicName>
+      <velocityTopicName>fix_velocity</velocityTopicName>
+      <referenceLatitude>0.0</referenceLatitude>
+      <referenceLongitude>0.0</referenceLongitude>
+      <referenceHeading>0.0</referenceHeading>
+      <referenceAltitude>0.0</referenceAltitude>
+      <drift>0.3 0.3 0.5</drift>
+      <gaussianNoise>0.05 0.05 0.1</gaussianNoise>
+      <velocityDrift>0.05 0.05 0.05</velocityDrift>
+      <velocityGaussianNoise>0.05 0.05 0.05</velocityGaussianNoise>
+    </plugin>
+  </gazebo>
+
+</robot>

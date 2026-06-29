@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>kalman_localization</name>
+  <version>1.0.0</version>
+  <description>
+    Pacote para a Avaliação Individual - Parte 2 (Fusão Sensorial com Filtro de
+    Kalman em ROS). Compara três configurações de localização do Husky no
+    ambiente lar_gazebo usando robot_localization: odometria, odometria+IMU e
+    odometria+IMU+GPS, gerando métricas de erro contra o ground truth.
+  </description>
+
+  <maintainer email="aluno@ufba.br">Aluno</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>lar_gazebo</exec_depend>
+  <exec_depend>husky_gazebo</exec_depend>
+  <exec_depend>hector_gazebo_plugins</exec_depend>
+  <exec_depend>robot_localization</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>rosbag</exec_depend>
+
+  <export>
+    <gazebo_ros gazebo_model_path="${prefix}/models" />
+  </export>
+</package>
